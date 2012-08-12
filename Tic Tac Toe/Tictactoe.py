@@ -22,6 +22,11 @@ bDone = False #Done one game.
 aBoard = ['z','z','z','z','z','z','z','z','z']
 aPositions = [ [100,50], [150,50], [200,50], [100,100], [150,100], [200,100], [100,150], [150,150], [200,150]] #for drawing.
 
+def add_text(sText, aColor, aCoordinates):
+    font = pygame.font.Font(None, 25)
+    text = font.render(sText,True,aColor)
+    screen.blit(text, aCoordinates)
+    
 def draw_game():
     pygame.draw.line(screen,black,[150,50],[150,210],5)
     pygame.draw.line(screen,black,[200,50],[200,210],5)
@@ -29,26 +34,15 @@ def draw_game():
     pygame.draw.line(screen,black,[100,150],[250,150],5)
 
 def draw_score():
-    font = pygame.font.Font(None, 25)
-    text = font.render("Score",True,green)
-    screen.blit(text, [150,220])
+    add_text("Score",green,[150,220])
     
-    font = pygame.font.Font(None, 25)
-    text = font.render("Player: 1",True,green)
-    screen.blit(text, [80,250])
+    add_text("Player: 1",green,[80,250])
     
-    font = pygame.font.Font(None, 25)
-    text = font.render("Player: 2",True,green)
-    screen.blit(text, [200,250])
+    add_text("Player: 2",green,[200,250])
     
-    font = pygame.font.Font(None, 25)
-    text = font.render(str(dPlayer_one_score),True,green)
-    screen.blit(text, [115,270])
+    add_text(str(dPlayer_one_score),green,[115,270])
     
-    font = pygame.font.Font(None, 25)
-    text = font.render(str(dPlayer_two_score),True,green)
-    screen.blit(text, [235,270])
-    
+    add_text(str(dPlayer_two_score),green,[235,270])    
 
 
 def draw_X(dPos):
@@ -158,13 +152,10 @@ def check_game():
             sResult = "Draw!"
             x_co = 165
         
-        font = pygame.font.Font(None, 25)
-        text = font.render(str(sResult),True,green)
-        screen.blit(text, [x_co,300])
-        font = pygame.font.Font(None, 25)
-        text = font.render("Click anywhere to continue!",True,green)
-        screen.blit(text, [80,320])
-        #clear_game(winner)
+        
+        add_text(str(sResult),green,[x_co,300])
+        
+        add_text("Click anywhere to continue!",green,[80,320])
             
     return
     
@@ -221,10 +212,7 @@ while done==False:
         counter = counter + 1
     
     #Player's turn
-    font = pygame.font.Font(None, 25)
-    text = font.render("Player: "+str(dPlayer),True,green)
-    screen.blit(text, [135,25])
-    
+    add_text("Player: "+str(dPlayer),green,[135,25])    
     
     #Players score
     
